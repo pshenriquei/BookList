@@ -1,9 +1,13 @@
 package com.example.bookinglist.presenter.activities
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import com.example.bookinglist.MainActivity
+import com.example.bookinglist.R
 import com.example.bookinglist.data.infra.ListOfBooksApi
 import com.example.bookinglist.data.infra.retroFit
 import com.example.bookinglist.data.model.ListBookModel
@@ -16,13 +20,13 @@ class BookInfoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBookInfoBinding
 
-    //TODO: Fazer button para voltar para a tela anterior
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBookInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar!!.hide()
+        Toolbar()
 
         val id: String = intent.getStringExtra("id").toString()
 
@@ -39,11 +43,11 @@ class BookInfoActivity : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
                         response.body()?.let {
-                            binding.titleBookText.text = it.results.first().title
-                            binding.authorNameText.text = it.results.first().authors.first().name
-                            binding.authorBirthText.text = it.results.first().authors.first().birth_year.toString()
-                            binding.authorDeathText.text = it.results.first().authors.first().death_year.toString()
-                            binding.subject.text = it.results.first().subjects.first().toString()
+                            binding.titleBookText.text = "Title: ${it.results.first().title}"
+                            binding.authorNameText.text = "Author: ${it.results.first().authors.first().name}"
+                            binding.authorBirthText.text = "Author's birth year: ${it.results.first().authors.first().birth_year}"
+                            binding.authorDeathText.text = "Author's death year: ${it.results.first().authors.first().death_year}"
+                            binding.subject.text = "Subject: ${it.results.first().subjects.first()}"
 
                         }
                     }
@@ -51,6 +55,20 @@ class BookInfoActivity : AppCompatActivity() {
 
             }
             )
+    }
+
+    private fun Toolbar(){
+        val toolbarBookInfo = binding.toolbarBookInfo
+
+        val backIcon = getDrawable(R.drawable.ic_back)
+        backIcon?.setTint(ContextCompat.getColor(this, R.color.black))
+        toolbarBookInfo.navigationIcon = backIcon
+        toolbarBookInfo.setNavigationOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+
+        }
     }
 
 }
