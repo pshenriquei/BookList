@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/LojaVirtual" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cielo-pcc-android" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flutter-nuvigator" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flutter-tests-initial-project" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/nasa_clean_arch" vcs="Git" />
+  </component>
+</project>
