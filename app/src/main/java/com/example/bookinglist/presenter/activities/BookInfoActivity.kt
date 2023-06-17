@@ -1,22 +1,13 @@
 package com.example.bookinglist.presenter.activities
 
-import android.content.Context
-import android.content.Intent
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
-import com.example.bookinglist.MainActivity
-import com.example.bookinglist.R
 import com.example.bookinglist.data.infra.ListOfBooksApi
 import com.example.bookinglist.data.infra.retroFit
-import com.example.bookinglist.data.model.BooksModel
 import com.example.bookinglist.data.model.ListBookModel
 import com.example.bookinglist.databinding.ActivityBookInfoBinding
-import com.example.bookinglist.databinding.ActivityBookListBinding
-import com.example.bookinglist.databinding.ItemBookListBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
