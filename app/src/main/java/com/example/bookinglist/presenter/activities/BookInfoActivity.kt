@@ -30,7 +30,6 @@ class BookInfoActivity : AppCompatActivity() {
     private lateinit var btnBack: ImageButton
     private var isBackButtonEnabled = true
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBookInfoBinding.inflate(layoutInflater)
@@ -40,7 +39,6 @@ class BookInfoActivity : AppCompatActivity() {
         progressBar.visibility = View.GONE
 
         loadData()
-
 
         supportActionBar?.apply {
             displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
@@ -63,46 +61,46 @@ class BookInfoActivity : AppCompatActivity() {
         }
     }
 
-override fun onResume() {
-    super.onResume()
-    isBackButtonEnabled = true
-    btnBack.isEnabled = true
-    progressBar.visibility = View.VISIBLE
-    lifecycleScope.launch {
-        delay(2000)
-        progressBar.visibility = View.GONE
+    override fun onResume() {
+        super.onResume()
+        isBackButtonEnabled = true
+        btnBack.isEnabled = true
+        progressBar.visibility = View.VISIBLE
+        lifecycleScope.launch {
+            delay(2000)
+            progressBar.visibility = View.GONE
+        }
     }
-}
 
-private fun loadData() {
-    val id: String = intent.getStringExtra("id").toString()
+    private fun loadData() {
+        val id: String = intent.getStringExtra("id").toString()
 
-    retroFit().create(ListOfBooksApi::class.java)
-        .getBooksById(id)
-        .enqueue(object : Callback<ListBookModel> {
-            override fun onFailure(call: Call<ListBookModel>, t: Throwable) {
-                Toast.makeText(applicationContext, "Server Error!", Toast.LENGTH_SHORT).show()
-            }
+        retroFit().create(ListOfBooksApi::class.java)
+            .getBooksById(id)
+            .enqueue(object : Callback<ListBookModel> {
+                override fun onFailure(call: Call<ListBookModel>, t: Throwable) {
+                    Toast.makeText(applicationContext, "Server Error!", Toast.LENGTH_SHORT).show()
+                }
 
-            override fun onResponse(
-                call: Call<ListBookModel>,
-                response: Response<ListBookModel>
-            ) {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        binding.titleBookText.text = "Title: ${it.results.first().title}"
-                        binding.authorNameText.text =
-                            "Author: ${it.results.first().authors.first().name}"
-                        binding.authorBirthText.text =
-                            "Author's birth year: ${it.results.first().authors.first().birth_year}"
-                        binding.authorDeathText.text =
-                            "Author's death year: ${it.results.first().authors.first().death_year}"
-                        binding.subject.text = "Subject: ${it.results.first().subjects.first()}"
+                override fun onResponse(
+                    call: Call<ListBookModel>,
+                    response: Response<ListBookModel>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.let {
+                            binding.titleBookText.text = "Title: ${it.results.first().title}"
+                            binding.authorNameText.text =
+                                "Author: ${it.results.first().authors.first().name}"
+                            binding.authorBirthText.text =
+                                "Author's birth year: ${it.results.first().authors.first().birth_year}"
+                            binding.authorDeathText.text =
+                                "Author's death year: ${it.results.first().authors.first().death_year}"
+                            binding.subject.text = "Subject: ${it.results.first().subjects.first()}"
 
+                        }
                     }
                 }
             }
-        }
-        )
-}
+            )
+    }
 }
