@@ -25,7 +25,7 @@ import retrofit2.Response
 
 class BookInfoActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityBookInfoBinding
+    lateinit var binding: ActivityBookInfoBinding
     private lateinit var progressBar: ProgressBar
     private lateinit var btnBack: ImageButton
     private var isBackButtonEnabled = true
@@ -72,7 +72,7 @@ class BookInfoActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadData() {
+    fun loadData() {
         val id: String = intent.getStringExtra("id").toString()
 
         retroFit().create(ListOfBooksApi::class.java)

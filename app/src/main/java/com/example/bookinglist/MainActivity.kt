@@ -28,7 +28,7 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var adapter: BookListAdapter
+     lateinit var adapter: BookListAdapter
     private var bookList: ArrayList<BooksModel> = arrayListOf()
     private lateinit var recyclerView: RecyclerView
     private lateinit var binding: ActivityBookListBinding
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun loadData(){
+     fun loadData(){
         retroFit().create(ListOfBooksApi::class.java)
             .getBooks()
             .enqueue(object : Callback<ListBookModel> {
@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private inner class BookListAdapter(val books: ArrayList<BooksModel>) :
+     inner class BookListAdapter(val books: ArrayList<BooksModel>) :
         RecyclerView.Adapter<BookListAdapter.ListBooksHolder>() {
 
         private lateinit var binding: ItemBookListBinding

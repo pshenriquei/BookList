@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.google.android.engage:engage-core:+'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.test:core-ktx:1.4.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -59,10 +60,17 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
     implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
     implementation 'com.squareup.moshi:moshi-kotlin:1.14.0'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.9.1'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
+    androidTestImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin-android:2.2.0'
+
+
 
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2'
 
     // Lifecycle components
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
