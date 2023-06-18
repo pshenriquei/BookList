@@ -35,8 +35,6 @@ class MainActivity : AppCompatActivity() {
     private var disabledButtons: HashSet<Int> = HashSet()
     private lateinit var progressBar: ProgressBar
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBookListBinding.inflate(layoutInflater)
@@ -47,11 +45,16 @@ class MainActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         progressBar.visibility = View.VISIBLE
 
+        loadData()
+
         recyclerView = findViewById<View>(R.id.recycler_books) as RecyclerView
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
 
+    }
+
+    private fun loadData(){
         retroFit().create(ListOfBooksApi::class.java)
             .getBooks()
             .enqueue(object : Callback<ListBookModel> {
